@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 为这个mapper指定一个唯一的namespace，namespace的值习惯上设置成包名+sql映射文件名，这样就能够保证namespace的值是唯一的-->
+<mapper namespace="com.lks.dao.BookMapper">
+    <!--获取所有的图书-->
+    <select id="getAllBooks" resultType="Book">
+        select id,title,price,publishDate from books
+    </select>
+
+    <!--获得图书对象通过编号 -->
+    <select id="getBookById" resultType="Book">
+        select id,title,price,publishDate from books where id=#{id}
+    </select>
+    <!-- 增加 -->
+    <insert id="add">
+        insert into books(title,price,publishDate)
+        values(#{title},#{price},#{publishDate})
+    </insert>
+    <!-- 删除 -->
+    <delete id="delete">
+        delete from books where id=#{id}
+    </delete>
+    <!-- 更新 -->
+    <update id="update">
+        update books set title=#{title},price=#{price},publishDate=#{publishDate}
+        where id=#{id}
+    </update>
+</mapper>
